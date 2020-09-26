@@ -1,15 +1,18 @@
 package br.com.mediBox.model;
 
-public class Gaveta {
+import javax.persistence.Entity;
+
+@Entity
+public class GavetaModel {
 	
-	private int idGaveta;
-	private int idMedicamento;
-	private int idCaixa;
+	private long idGaveta;
+	private long idMedicamento;
+	private long idCaixa;
 	private double temperatura;
 	private String nomeGaveta;
 		
 	
-	public Gaveta(int idGaveta, int idMedicamento, int idCaixa, double temperatura, String nomeGaveta) {
+	public GavetaModel(long idGaveta, long idMedicamento, long idCaixa, double temperatura, String nomeGaveta) {
 		super();
 		this.idGaveta = idGaveta;
 		this.idMedicamento = idMedicamento;
@@ -17,22 +20,22 @@ public class Gaveta {
 		this.temperatura = temperatura;
 		this.nomeGaveta = nomeGaveta;
 	}
-	public int getIdGaveta() {
+	public long getIdGaveta() {
 		return idGaveta;
 	}
-	public void setIdGaveta(int idGaveta) {
+	public void setIdGaveta(long idGaveta) {
 		this.idGaveta = idGaveta;
 	}
-	public int getIdMedicamento() {
+	public long getIdMedicamento() {
 		return idMedicamento;
 	}
-	public void setIdMedicamento(int idMedicamento) {
+	public void setIdMedicamento(long idMedicamento) {
 		this.idMedicamento = idMedicamento;
 	}
-	public int getIdCaixa() {
+	public long getIdCaixa() {
 		return idCaixa;
 	}
-	public void setIdCaixa(int idCaixa) {
+	public void setIdCaixa(long idCaixa) {
 		this.idCaixa = idCaixa;
 	}
 	public double getTemperatura() {

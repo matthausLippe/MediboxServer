@@ -1,9 +1,12 @@
 package br.com.mediBox.model;
 
-public class Caixa {
+import javax.persistence.Entity;
+
+@Entity
+public class CaixaModel {
 	
-	private int idCaixa;
-	private int idCliente;
+	private long idCaixa;
+	private long idCliente;
 	private String mac;
 	private int status;
 	public static int ATIVO = 1;
@@ -11,7 +14,7 @@ public class Caixa {
 	
 	
 	
-	public Caixa(int idCaixa, int idCliente, String mac, int status) {
+	public CaixaModel(long idCaixa, long idCliente, String mac, int status) {
 		super();
 		this.idCaixa = idCaixa;
 		this.idCliente = idCliente;
@@ -19,16 +22,16 @@ public class Caixa {
 		this.status = status;
 	}
 	
-	public int getIdCaixa() {
+	public long getIdCaixa() {
 		return idCaixa;
 	}
-	public void setIdCaixa(int idCaixa) {
+	public void setIdCaixa(long idCaixa) {
 		this.idCaixa = idCaixa;
 	}
-	public int getIdCliente() {
+	public long getIdCliente() {
 		return idCliente;
 	}
-	public void setIdCliente(int idCliente) {
+	public void setIdCliente(long idCliente) {
 		this.idCliente = idCliente;
 	}
 	public String getMac() {
