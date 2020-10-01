@@ -17,7 +17,7 @@ public class ClienteModel {
     @Column(name = "nomeCLiente")
     private String nomeCliente;
 
-    @Column(name = "CPF-CNPJ")
+    @Column(name = "CPFCNPJ")
     private String cpfCnpj;
 
     @Column(name = "email")
