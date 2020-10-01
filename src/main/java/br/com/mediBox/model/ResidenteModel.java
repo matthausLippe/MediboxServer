@@ -3,6 +3,7 @@ package br.com.mediBox.model;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "TB_RESIDENTE")
@@ -40,7 +41,7 @@ public class ResidenteModel {
     private String observacoes;
 
     @OneToMany (mappedBy = "residenteModel")
-    private ArrayList<ResidenteMedicamentoModel> residenteMedicamento;
+    private List<ResidenteMedicamentoModel> residenteMedicamento = new ArrayList<ResidenteMedicamentoModel>();
 
 
     public ResidenteModel(ClienteModel clienteModel, long idResidente, String nomeResidente, Date dataNascimento,
@@ -128,11 +129,11 @@ public class ResidenteModel {
         this.observacoes = observacoes;
     }
 
-    public ArrayList<ResidenteMedicamentoModel> getResidenteMedicamento() {
+    public List<ResidenteMedicamentoModel> getResidenteMedicamento() {
         return residenteMedicamento;
     }
 
-    public void setResidenteMedicamento(ArrayList<ResidenteMedicamentoModel> residenteMedicamento) {
+    public void setResidenteMedicamento(List<ResidenteMedicamentoModel> residenteMedicamento) {
         this.residenteMedicamento = residenteMedicamento;
     }
 }

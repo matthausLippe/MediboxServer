@@ -29,9 +29,6 @@ public class ClienteModel {
     @Column(name = "telefone")
     private String telefone;
 
-    @Column(name = "idEndereco")
-    private EnderecoModel enderecoModel;
-
     @OneToMany (mappedBy = "clienteModel")
     private List<ResidenteModel> listResidente = new ArrayList<ResidenteModel>();
 
@@ -48,14 +45,13 @@ public class ClienteModel {
     private List<EnderecoModel> listEndereco = new ArrayList<EnderecoModel>();
 
 
-    public ClienteModel(long idCliente, String nomeCliente, String cpfCnpj, String email, String senha, String telefone, EnderecoModel enderecoModel) {
+    public ClienteModel(long idCliente, String nomeCliente, String cpfCnpj, String email, String senha, String telefone) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.cpfCnpj = cpfCnpj;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
-        this.enderecoModel = enderecoModel;
     }
 
     public long getIdCliente() {
@@ -106,11 +102,4 @@ public class ClienteModel {
         this.telefone = telefone;
     }
 
-    public EnderecoModel getEnderecoModel() {
-        return enderecoModel;
-    }
-
-    public void setEnderecoModel(EnderecoModel enderecoModel) {
-        this.enderecoModel = enderecoModel;
-    }
 }
