@@ -1,24 +1,51 @@
 package br.com.mediBox.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
 
 @Entity
+@Table(name = "TB_RESIDENTE")
 public class ResidenteModel {
 
+    @Id
+    @Column(name = "idResidente")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RESIDENTE_SEQ")
+    @SequenceGenerator(name = "RESIDENTE_SEQ", initialValue = 1, allocationSize = 1)
     private long idResidente;
+
+    @ManyToOne
+    @JoinColumn (name="idCliente", nullable = false)
+    private ClienteModel clienteModel;
+
+    @Column(name = "nomeResidente")
     private String nomeResidente;
+
+    @Column(name = "dataNascimento")
     private Date dataNascimento;
+
+    @Column(name = "sexo")
     private String sexo;
+
+    @Column(name = "nomeResponsavel")
     private String nomeResponsavel;
+
+    @Column(name = "telResponsavel")
     private String telResponsavel;
+
+    @Column(name = "quarto")
     private String quarto;
+
+    @Column(name = "observacoes")
     private String observacoes;
+
+    @OneToMany (mappedBy = "residenteModel")
     private ArrayList<ResidenteMedicamentoModel> residenteMedicamento;
 
 
-    public ResidenteModel(long idResidente, String nomeResidente, Date dataNascimento, String sexo, String nomeResponsavel, String telResponsavel, String quarto, String observacoes) {
+    public ResidenteModel(ClienteModel clienteModel, long idResidente, String nomeResidente, Date dataNascimento,
+                          String sexo, String nomeResponsavel, String telResponsavel, String quarto, String observacoes) {
+        this.clienteModel = clienteModel;
         this.idResidente = idResidente;
         this.nomeResidente = nomeResidente;
         this.dataNascimento = dataNascimento;
@@ -27,6 +54,14 @@ public class ResidenteModel {
         this.telResponsavel = telResponsavel;
         this.quarto = quarto;
         this.observacoes = observacoes;
+    }
+
+    public ClienteModel getClienteModel() {
+        return clienteModel;
+    }
+
+    public void setClienteModel(ClienteModel clienteModel) {
+        this.clienteModel = clienteModel;
     }
 
     public long getIdResidente() {

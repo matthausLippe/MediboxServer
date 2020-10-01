@@ -1,22 +1,76 @@
 package br.com.mediBox.model;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import javafx.animation.Timeline;
+
+import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "TB_RESIDENTEMEDICAMENTO")
 public class ResidenteMedicamentoModel {
 
+    @Id
+    @Column(name = "idResidenteMedicamento")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RESIDENTEMEDICAMENTO_SEQ")
+    @SequenceGenerator(name = "RESIDENTEMEDICAMENTO_SEQ", initialValue = 1, allocationSize = 1)
     private long idResidenteMedicamento;
-    private long idResidente;
-    private long idMedicamento;
-    private long idCliente;
-    private long idGaveta;
+
+    @ManyToOne
+    @JoinColumn (name="idResidente", nullable = false)
+    private ResidenteModel residenteModel;
+
+    @ManyToOne
+    @JoinColumn (name="idMedicamento", nullable = false)
+    private MedicamentoModel medicamentoModel;
+
+    @ManyToOne
+    @JoinColumn (name="idCliente", nullable = false)
+    private ClienteModel clienteModel;
+
+    @ManyToOne
+    @JoinColumn (name="idGaveta", nullable = false)
+    private GavetaModel gavetaModel;
+
+    @Column(name = "dosagem")
     private String dosagem;
+
+    @Column(name = "intervalo")
     private double intervalo;
+
+    @Column(name = "dataInicio")
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date dataInicio;
+
+    @Column(name = "horaInicio")
     private Time horaInicio;
+
+    @Column(name = "doses")
     private int doses;
+
+    @OneToMany (mappedBy = "residenteMedicamentoModel")
+    private List<TimeLineModel> listTimeLine = new ArrayList<TimeLineModel>();
+
+
+
+    public ResidenteMedicamentoModel(long idResidenteMedicamento, ResidenteModel residenteModel,
+                                     MedicamentoModel medicamentoModel, ClienteModel clienteModel,
+                                     GavetaModel gavetaModel, String dosagem, double intervalo,
+                                     Date dataInicio, Time horaInicio, int doses) {
+        this.idResidenteMedicamento = idResidenteMedicamento;
+        this.residenteModel = residenteModel;
+        this.medicamentoModel = medicamentoModel;
+        this.clienteModel = clienteModel;
+        this.gavetaModel = gavetaModel;
+        this.dosagem = dosagem;
+        this.intervalo = intervalo;
+        this.dataInicio = dataInicio;
+        this.horaInicio = horaInicio;
+        this.doses = doses;
+    }
 
     public long getIdResidenteMedicamento() {
         return idResidenteMedicamento;
@@ -26,36 +80,36 @@ public class ResidenteMedicamentoModel {
         this.idResidenteMedicamento = idResidenteMedicamento;
     }
 
-    public long getIdResidente() {
-        return idResidente;
+    public ResidenteModel getResidenteModel() {
+        return residenteModel;
     }
 
-    public void setIdResidente(long idResidente) {
-        this.idResidente = idResidente;
+    public void setResidenteModel(ResidenteModel residenteModel) {
+        this.residenteModel = residenteModel;
     }
 
-    public long getIdMedicamento() {
-        return idMedicamento;
+    public MedicamentoModel getMedicamentoModel() {
+        return medicamentoModel;
     }
 
-    public void setIdMedicamento(long idMedicamento) {
-        this.idMedicamento = idMedicamento;
+    public void setMedicamentoModel(MedicamentoModel medicamentoModel) {
+        this.medicamentoModel = medicamentoModel;
     }
 
-    public long getIdCliente() {
-        return idCliente;
+    public ClienteModel getClienteModel() {
+        return clienteModel;
     }
 
-    public void setIdCliente(long idCliente) {
-        this.idCliente = idCliente;
+    public void setClienteModel(ClienteModel clienteModel) {
+        this.clienteModel = clienteModel;
     }
 
-    public long getIdGaveta() {
-        return idGaveta;
+    public GavetaModel getGavetaModel() {
+        return gavetaModel;
     }
 
-    public void setIdGaveta(long idGaveta) {
-        this.idGaveta = idGaveta;
+    public void setGavetaModel(GavetaModel gavetaModel) {
+        this.gavetaModel = gavetaModel;
     }
 
     public String getDosagem() {
@@ -96,21 +150,5 @@ public class ResidenteMedicamentoModel {
 
     public void setDoses(int doses) {
         this.doses = doses;
-    }
-
-    public ResidenteMedicamentoModel(long idResidenteMedicamento, long idResidente, long idMedicamento, long idCliente,
-                                     long idGaveta, String dosagem, double intervalo, Date dataInicio, Time horaInicio, int doses) {
-        this.idResidenteMedicamento = idResidenteMedicamento;
-        this.idResidente = idResidente;
-        this.idMedicamento = idMedicamento;
-        this.idCliente = idCliente;
-        this.idGaveta = idGaveta;
-        this.dosagem = dosagem;
-        this.intervalo = intervalo;
-        this.dataInicio = dataInicio;
-        this.horaInicio = horaInicio;
-        this.doses = doses;
-
-
     }
 }

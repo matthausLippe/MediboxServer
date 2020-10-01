@@ -1,27 +1,62 @@
 package br.com.mediBox.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "TB_CLIENTE")
 public class ClienteModel {
-    private long idCliente;
-    private String nomeCliente;
-    private String cpfCnpj;
-    private String email;
-    private String senha;
-    private String telefone;
-    private long idEndereco;
 
-    public ClienteModel(long idCliente, String nomeCliente, String cpfCnpj, String email, String senha, String telefone, long idEndereco) {
+    @Id
+    @Column(name = "idCliente")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIENTE_SEQ")
+    @SequenceGenerator(name = "CLIENTE_SEQ", initialValue = 1, allocationSize = 1)
+    private long idCliente;
+
+    @Column(name = "nomeCLiente")
+    private String nomeCliente;
+
+    @Column(name = "CPF-CNPJ")
+    private String cpfCnpj;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "senha")
+    private String senha;
+
+    @Column(name = "telefone")
+    private String telefone;
+
+    @Column(name = "idEndereco")
+    private EnderecoModel enderecoModel;
+
+    @OneToMany (mappedBy = "clienteModel")
+    private List<ResidenteModel> listResidente = new ArrayList<ResidenteModel>();
+
+    @OneToMany (mappedBy = "clienteModel")
+    private List<CaixaModel> listCaixa = new ArrayList<CaixaModel>();
+
+    @OneToMany (mappedBy = "clienteModel")
+    private List<ResidenteMedicamentoModel> listResidenteMedicamento = new ArrayList<ResidenteMedicamentoModel>();
+
+    @OneToMany (mappedBy = "clienteModel")
+    private List<TimeLineModel> listTimeLine = new ArrayList<TimeLineModel>();
+
+    @OneToMany (mappedBy = "clienteModel")
+    private List<EnderecoModel> listEndereco = new ArrayList<EnderecoModel>();
+
+
+    public ClienteModel(long idCliente, String nomeCliente, String cpfCnpj, String email, String senha, String telefone, EnderecoModel enderecoModel) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.cpfCnpj = cpfCnpj;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
-        this.idEndereco = idEndereco;
+        this.enderecoModel = enderecoModel;
     }
-
 
     public long getIdCliente() {
         return idCliente;
@@ -71,11 +106,11 @@ public class ClienteModel {
         this.telefone = telefone;
     }
 
-    public long getIdEndereco() {
-        return idEndereco;
+    public EnderecoModel getEnderecoModel() {
+        return enderecoModel;
     }
 
-    public void setIdEndereco(long idEndereco) {
-        this.idEndereco = idEndereco;
+    public void setEnderecoModel(EnderecoModel enderecoModel) {
+        this.enderecoModel = enderecoModel;
     }
 }

@@ -1,27 +1,48 @@
 package br.com.mediBox.model;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 
 @Entity
+@Table (name = "TB_TIMELINE")
 public class TimeLineModel {
+
+    @Id
+    @Column(name = "idTimeLine")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TIMELINE_SEQ")
+    @SequenceGenerator(name = "TIMELINE_SEQ", initialValue = 1, allocationSize = 1)
     private long idTimeLine;
-    private long idResidenteMedicamento;
-    private long idCliente;
+
+    @ManyToOne
+    @JoinColumn (name="idResidenteMedicamento", nullable = false)
+    private ResidenteMedicamentoModel residenteMedicamentoModel;
+
+    @ManyToOne
+    @JoinColumn (name="idCliente", nullable = false)
+    private ClienteModel clienteModel;
+
+    @Column(name = "dataMedicacao")
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date dataMedicacao;
+
+    @Column(name = "horaMedicacao")
     private Time horaMedicacao;
+
+    @Column(name = "status")
     private int status ;
+
     public static int MEDICADO = 1;
     public static int NAO_MEDICADO = 0;
 
-    public TimeLineModel(long idTimeLine, long idResidenteMedicamento, long idCliente, Date dataMedicacao, Time horaMedicacao, int status) {
+    public TimeLineModel(long idTimeLine, ResidenteMedicamentoModel residenteMedicamentoModel, ClienteModel clienteModel, Date dataMedicacao, Time horaMedicacao, int status) {
         this.idTimeLine = idTimeLine;
-        this.idResidenteMedicamento = idResidenteMedicamento;
-        this.idCliente = idCliente;
+        this.residenteMedicamentoModel = residenteMedicamentoModel;
+        this.clienteModel = clienteModel;
         this.dataMedicacao = dataMedicacao;
         this.horaMedicacao = horaMedicacao;
-        this.status = status;
     }
 
     public long getIdTimeLine() {
@@ -32,20 +53,20 @@ public class TimeLineModel {
         this.idTimeLine = idTimeLine;
     }
 
-    public long getIdResidenteMedicamento() {
-        return idResidenteMedicamento;
+    public ResidenteMedicamentoModel getResidenteMedicamentoModel() {
+        return residenteMedicamentoModel;
     }
 
-    public void setIdResidenteMedicamento(long idResidenteMedicamento) {
-        this.idResidenteMedicamento = idResidenteMedicamento;
+    public void setResidenteMedicamentoModel(ResidenteMedicamentoModel residenteMedicamentoModel) {
+        this.residenteMedicamentoModel = residenteMedicamentoModel;
     }
 
-    public long getIdCliente() {
-        return idCliente;
+    public ClienteModel getClienteModel() {
+        return clienteModel;
     }
 
-    public void setIdCliente(long idCliente) {
-        this.idCliente = idCliente;
+    public void setClienteModel(ClienteModel clienteModel) {
+        this.clienteModel = clienteModel;
     }
 
     public Date getDataMedicacao() {

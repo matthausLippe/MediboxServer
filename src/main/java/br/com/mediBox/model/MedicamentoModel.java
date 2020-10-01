@@ -1,15 +1,36 @@
 package br.com.mediBox.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "TB_MEDICAMENTO")
 public class MedicamentoModel {
 
+    @Id
+    @Column(name = "idMedicamento")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEDICAMENTO_SEQ")
+    @SequenceGenerator(name = "MEDICAMENTO_SEQ", initialValue = 1, allocationSize = 1)
     private long idMedicamento;
+
+    @Column(name = "nomeMedicamento")
     private String nomeMedicamento;
+
+    @Column(name = "laboratorio")
     private String laboratorio;
+
+    @Column(name = "dosagem")
     private String dosagem;
+
+    @Column(name = "descricao")
     private String descricao;
+
+    @OneToMany (mappedBy = "medicamentoModel")
+    private List<GavetaModel> listGaveta = new ArrayList<GavetaModel>();
+
+    @OneToMany (mappedBy = "medicamentoModel")
+    private List<ResidenteMedicamentoModel> listResidenteMedicamento = new ArrayList<ResidenteMedicamentoModel>();
 
     public MedicamentoModel(long idMedicamento, String nomeMedicamento, String laboratorio, String dosagem, String descricao) {
         this.idMedicamento = idMedicamento;
