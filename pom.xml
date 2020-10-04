@@ -45,7 +45,7 @@
 			<artifactId>ojdbc</artifactId>
 			<version>6</version>
 			<scope>system</scope>
-			<systemPath>F:/GitHub/mediBoxServer/src/main/resources/lib-oracle/ojdbc6.jar</systemPath>
+			<systemPath>${project.baseDir}/src/main/resources/lib-oracle/ojdbc6.jar</systemPath>
 		</dependency>
 		
 		<dependency>
