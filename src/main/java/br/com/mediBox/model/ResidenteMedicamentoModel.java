@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +42,16 @@ public class ResidenteMedicamentoModel {
     @Column(name = "intervalo")
     private double intervalo;
 
-    @Column(name = "dataInicio")
+    /*@Column(name = "dataInicio")
     @JsonFormat(pattern="dd/MM/yyyy")
     private Date dataInicio;
 
     @Column(name = "horaInicio")
-    private Time horaInicio;
+    private Time horaInicio;*/
+
+    @JsonFormat(pattern="yyyy-MM-dd@HH:mm:ss.SSSZ")
+    @Column(name = "dataHoraInicio")
+    private Timestamp dataHoraInicio;
 
     @Column(name = "doses")
     private int doses;
@@ -59,7 +64,7 @@ public class ResidenteMedicamentoModel {
     public ResidenteMedicamentoModel(long idResidenteMedicamento, ResidenteModel residenteModel,
                                      MedicamentoModel medicamentoModel, ClienteModel clienteModel,
                                      GavetaModel gavetaModel, String dosagem, double intervalo,
-                                     Date dataInicio, Time horaInicio, int doses) {
+                                     Timestamp dataHoraInicio, int doses) {
         this.idResidenteMedicamento = idResidenteMedicamento;
         this.residenteModel = residenteModel;
         this.medicamentoModel = medicamentoModel;
@@ -67,8 +72,7 @@ public class ResidenteMedicamentoModel {
         this.gavetaModel = gavetaModel;
         this.dosagem = dosagem;
         this.intervalo = intervalo;
-        this.dataInicio = dataInicio;
-        this.horaInicio = horaInicio;
+        this.dataHoraInicio = dataHoraInicio;
         this.doses = doses;
     }
 
@@ -128,7 +132,15 @@ public class ResidenteMedicamentoModel {
         this.intervalo = intervalo;
     }
 
-    public Date getDataInicio() {
+    public Timestamp getDataHoraInicio() {
+        return dataHoraInicio;
+    }
+
+    public void setDataHoraInicio(Timestamp dataHoraInicio) {
+        this.dataHoraInicio = dataHoraInicio;
+    }
+
+    /*public Date getDataInicio() {
         return dataInicio;
     }
 
@@ -142,7 +154,7 @@ public class ResidenteMedicamentoModel {
 
     public void setHoraInicio(Time horaInicio) {
         this.horaInicio = horaInicio;
-    }
+    }*/
 
     public int getDoses() {
         return doses;

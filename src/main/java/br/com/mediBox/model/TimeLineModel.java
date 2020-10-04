@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
 @Table (name = "TB_TIMELINE")
@@ -24,12 +25,16 @@ public class TimeLineModel {
     @JoinColumn (name="idCliente", nullable = false)
     private ClienteModel clienteModel;
 
-    @Column(name = "dataMedicacao")
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private Date dataMedicacao;
+    //@Column(name = "dataMedicacao")
+    //@JsonFormat(pattern="dd/MM/yyyy")
+    //private Date dataMedicacao;
 
-    @Column(name = "horaMedicacao")
-    private Time horaMedicacao;
+    //@Column(name = "horaMedicacao")
+    //private Time horaMedicacao;
+
+    @JsonFormat(pattern="yyyy-MM-dd@HH:mm:ss.SSSZ")
+    @Column(name = "dataHoraMedicacao")
+    private Timestamp dataHoraMedicacao;
 
     @Column(name = "status")
     private int status ;
@@ -37,12 +42,12 @@ public class TimeLineModel {
     public static int MEDICADO = 1;
     public static int NAO_MEDICADO = 0;
 
-    public TimeLineModel(long idTimeLine, ResidenteMedicamentoModel residenteMedicamentoModel, ClienteModel clienteModel, Date dataMedicacao, Time horaMedicacao, int status) {
+    public TimeLineModel(long idTimeLine, ResidenteMedicamentoModel residenteMedicamentoModel, ClienteModel clienteModel, Timestamp dataHoraMedicacao, int status) {
         this.idTimeLine = idTimeLine;
         this.residenteMedicamentoModel = residenteMedicamentoModel;
         this.clienteModel = clienteModel;
-        this.dataMedicacao = dataMedicacao;
-        this.horaMedicacao = horaMedicacao;
+        this.dataHoraMedicacao = dataHoraMedicacao;
+        //this.horaMedicacao = horaMedicacao;
     }
 
     public long getIdTimeLine() {
@@ -69,7 +74,15 @@ public class TimeLineModel {
         this.clienteModel = clienteModel;
     }
 
-    public Date getDataMedicacao() {
+    public Timestamp getDataHoraMedicacao() {
+        return dataHoraMedicacao;
+    }
+
+    public void setDataHoraMedicacao(Timestamp dataHoraMedicacao) {
+        this.dataHoraMedicacao = dataHoraMedicacao;
+    }
+
+    /*public Date getDataMedicacao() {
         return dataMedicacao;
     }
 
@@ -83,7 +96,7 @@ public class TimeLineModel {
 
     public void setHoraMedicacao(Time horaMedicacao) {
         this.horaMedicacao = horaMedicacao;
-    }
+    }*/
 
     public int getStatus() {
         return status;
