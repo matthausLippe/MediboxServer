@@ -1,11 +1,8 @@
 package br.com.mediBox.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import javafx.animation.Timeline;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
