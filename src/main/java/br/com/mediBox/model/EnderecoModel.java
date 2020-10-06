@@ -37,16 +37,8 @@ public class EnderecoModel {
     @Column(name = "cep")
     private String cep;
 
-    public EnderecoModel(long idEndereco, ClienteModel clienteModel, String rua, String numero, String complemento, String bairro, String cidade, String estado, String cep) {
-        this.idEndereco = idEndereco;
-        this.clienteModel = clienteModel;
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.cep = cep;
+    public EnderecoModel(){
+
     }
 
     public long getIdEndereco() {

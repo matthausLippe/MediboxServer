@@ -30,11 +30,8 @@ public class GavetaModel {
 	@OneToMany (mappedBy = "gavetaModel")
 	private List<ResidenteMedicamentoModel> listResidenteMedicamentoModel = new ArrayList<ResidenteMedicamentoModel>();
 
-	public GavetaModel(long idGaveta, CaixaModel caixaModel, double temperatura, String nomeGaveta) {
-		this.idGaveta = idGaveta;
-		this.caixaModel = caixaModel;
-		this.temperatura = temperatura;
-		this.nomeGaveta = nomeGaveta;
+	public GavetaModel() {
+
 	}
 
 	public GavetaModel(long idGaveta, MedicamentoModel medicamentoModel, CaixaModel caixaModel, double temperatura, String nomeGaveta) {

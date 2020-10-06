@@ -29,11 +29,8 @@ public class CaixaModel {
 	public static int ATIVO = 1;
 	public static int INATIVO = 0;
 
-	public CaixaModel(long idCaixa, ClienteModel clienteModel, String mac, int status) {
-		this.idCaixa = idCaixa;
-		this.clienteModel = clienteModel;
-		this.mac = mac;
-		this.status = status;
+	public CaixaModel() {
+
 	}
 
 	public long getIdCaixa() {

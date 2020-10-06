@@ -32,12 +32,8 @@ public class MedicamentoModel {
     @OneToMany (mappedBy = "medicamentoModel")
     private List<ResidenteMedicamentoModel> listResidenteMedicamento = new ArrayList<ResidenteMedicamentoModel>();
 
-    public MedicamentoModel(long idMedicamento, String nomeMedicamento, String laboratorio, String dosagem, String descricao) {
-        this.idMedicamento = idMedicamento;
-        this.nomeMedicamento = nomeMedicamento;
-        this.laboratorio = laboratorio;
-        this.dosagem = dosagem;
-        this.descricao = descricao;
+    public MedicamentoModel() {
+
     }
 
     public MedicamentoModel(long idMedicamento, String nomeMedicamento, String laboratorio, String dosagem) {

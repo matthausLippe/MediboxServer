@@ -44,17 +44,8 @@ public class ResidenteModel {
     private List<ResidenteMedicamentoModel> residenteMedicamento = new ArrayList<ResidenteMedicamentoModel>();
 
 
-    public ResidenteModel(ClienteModel clienteModel, long idResidente, String nomeResidente, Date dataNascimento,
-                          String sexo, String nomeResponsavel, String telResponsavel, String quarto, String observacoes) {
-        this.clienteModel = clienteModel;
-        this.idResidente = idResidente;
-        this.nomeResidente = nomeResidente;
-        this.dataNascimento = dataNascimento;
-        this.sexo = sexo;
-        this.nomeResponsavel = nomeResponsavel;
-        this.telResponsavel = telResponsavel;
-        this.quarto = quarto;
-        this.observacoes = observacoes;
+    public ResidenteModel() {
+
     }
 
     public ClienteModel getClienteModel() {

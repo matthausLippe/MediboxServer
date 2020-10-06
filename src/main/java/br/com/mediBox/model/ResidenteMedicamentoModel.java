@@ -58,19 +58,8 @@ public class ResidenteMedicamentoModel {
 
 
 
-    public ResidenteMedicamentoModel(long idResidenteMedicamento, ResidenteModel residenteModel,
-                                     MedicamentoModel medicamentoModel, ClienteModel clienteModel,
-                                     GavetaModel gavetaModel, String dosagem, double intervalo,
-                                     Timestamp dataHoraInicio, int doses) {
-        this.idResidenteMedicamento = idResidenteMedicamento;
-        this.residenteModel = residenteModel;
-        this.medicamentoModel = medicamentoModel;
-        this.clienteModel = clienteModel;
-        this.gavetaModel = gavetaModel;
-        this.dosagem = dosagem;
-        this.intervalo = intervalo;
-        this.dataHoraInicio = dataHoraInicio;
-        this.doses = doses;
+    public ResidenteMedicamentoModel() {
+
     }
 
     public long getIdResidenteMedicamento() {

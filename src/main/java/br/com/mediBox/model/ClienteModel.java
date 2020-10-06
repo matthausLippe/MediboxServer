@@ -45,13 +45,8 @@ public class ClienteModel {
     private List<EnderecoModel> listEndereco = new ArrayList<EnderecoModel>();
 
 
-    public ClienteModel(long idCliente, String nomeCliente, String cpfCnpj, String email, String senha, String telefone) {
-        this.idCliente = idCliente;
-        this.nomeCliente = nomeCliente;
-        this.cpfCnpj = cpfCnpj;
-        this.email = email;
-        this.senha = senha;
-        this.telefone = telefone;
+    public ClienteModel() {
+
     }
 
     public long getIdCliente() {

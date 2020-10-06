@@ -42,12 +42,8 @@ public class TimeLineModel {
     public static int MEDICADO = 1;
     public static int NAO_MEDICADO = 0;
 
-    public TimeLineModel(long idTimeLine, ResidenteMedicamentoModel residenteMedicamentoModel, ClienteModel clienteModel, Timestamp dataHoraMedicacao, int status) {
-        this.idTimeLine = idTimeLine;
-        this.residenteMedicamentoModel = residenteMedicamentoModel;
-        this.clienteModel = clienteModel;
-        this.dataHoraMedicacao = dataHoraMedicacao;
-        //this.horaMedicacao = horaMedicacao;
+    public TimeLineModel() {
+       
     }
 
     public long getIdTimeLine() {
