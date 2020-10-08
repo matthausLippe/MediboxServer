@@ -29,4 +29,8 @@ public class ResidenteMedicamentoBusiness {
     public void deleteById(long id) {
         residenteMedicamentoRepository.deleteById(id);
     }
+
+    public List<ResidenteMedicamentoModel> findByIdResidente(long id){
+        return residenteMedicamentoRepository.findByIdResidente(id);
+    }
 }

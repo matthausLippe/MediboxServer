@@ -25,9 +25,14 @@ public class ResidenteMedicamentoController {
 
         List<ResidenteMedicamentoModel> listResidenteMedicamento = residenteMedicamentoBusiness.findAll();
         return ResponseEntity.ok(listResidenteMedicamento);
+    }
 
+    //BuscaIdResidente
+    @GetMapping("/residente/{id}")
+    public ResponseEntity<List<ResidenteMedicamentoModel>> findAll(@PathVariable("id") long id){
 
-
+        List<ResidenteMedicamentoModel> listResidenteMedicamento = residenteMedicamentoBusiness.findByIdResidente(id);
+        return ResponseEntity.ok(listResidenteMedicamento);
     }
 
     @GetMapping("/{id}")

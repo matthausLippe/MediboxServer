@@ -26,8 +26,9 @@ public class MedicamentoModel {
     @Column(name = "descricao")
     private String descricao;
 
-    @OneToMany (mappedBy = "medicamentoModel")
-    private List<GavetaModel> listGaveta = new ArrayList<GavetaModel>();
+    @ManyToOne
+    @JoinColumn (name="idGaveta", nullable = false)
+    private GavetaModel gavetaModel;
 
     @OneToMany (mappedBy = "medicamentoModel")
     private List<ResidenteMedicamentoModel> listResidenteMedicamento = new ArrayList<ResidenteMedicamentoModel>();
@@ -69,6 +70,14 @@ public class MedicamentoModel {
 
     public String getDosagem() {
         return dosagem;
+    }
+
+    public GavetaModel getGavetaModel() {
+        return gavetaModel;
+    }
+
+    public void setGavetaModel(GavetaModel gavetaModel) {
+        this.gavetaModel = gavetaModel;
     }
 
     public void setDosagem(String dosagem) {
