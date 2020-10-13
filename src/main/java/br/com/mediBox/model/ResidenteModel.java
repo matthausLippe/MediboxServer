@@ -52,7 +52,6 @@ public class ResidenteModel {
     @OneToMany (mappedBy = "residenteModel")
     private List<ResidenteMedicamentoModel> residenteMedicamento = new ArrayList<ResidenteMedicamentoModel>();
 
-
     public ResidenteModel() {
 
     }

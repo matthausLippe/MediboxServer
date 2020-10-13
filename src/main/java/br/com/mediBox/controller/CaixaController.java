@@ -27,20 +27,16 @@ public class CaixaController {
     //Busca
     @GetMapping
     public ResponseEntity<List<CaixaModel>> findAll() {
-
         List<CaixaModel> listCaixa = caixaBusiness.findAll();
         return ResponseEntity.ok(listCaixa);
-
-
     }
 
+    //Busca pelo Id
     @GetMapping("/{id}")
     public ResponseEntity<CaixaModel> findById(@PathVariable("id") long id) {
         CaixaModel caixaModel = caixaBusiness.findById(id);
         return ResponseEntity.ok(caixaModel);
-
     }
-
 
     //Cadastro
     @PostMapping
@@ -70,7 +66,6 @@ public class CaixaController {
     @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable("id") long id) {
         caixaBusiness.deleteById(id);
-
         return ResponseEntity.noContent().build();
     }
 

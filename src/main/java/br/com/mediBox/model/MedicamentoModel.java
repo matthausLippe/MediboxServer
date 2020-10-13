@@ -45,13 +45,6 @@ public class MedicamentoModel {
 
     }
 
-    public MedicamentoModel(long idMedicamento, String nomeMedicamento, String laboratorio, String dosagem) {
-        this.idMedicamento = idMedicamento;
-        this.nomeMedicamento = nomeMedicamento;
-        this.laboratorio = laboratorio;
-        this.dosagem = dosagem;
-    }
-
     public long getIdMedicamento() {
         return idMedicamento;
     }

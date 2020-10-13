@@ -22,19 +22,14 @@ public class EnderecoController {
     //Busca
     @GetMapping
     public ResponseEntity<List<EnderecoModel>> findAll(){
-
         List<EnderecoModel> listEndereco = enderecoBusiness.findAll();
         return ResponseEntity.ok(listEndereco);
-
-
-
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<EnderecoModel> findById(@PathVariable("id") long id){
         EnderecoModel enderecoModel = enderecoBusiness.findById(id);
         return ResponseEntity.ok(enderecoModel);
-
     }
 
 
@@ -42,32 +37,25 @@ public class EnderecoController {
     @PostMapping
     public ResponseEntity save(@RequestBody EnderecoModel enderecoModel) throws ResponseBusinessException {
         enderecoBusiness.save(enderecoModel);
-
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(enderecoModel.getIdEndereco()).toUri();
-
         return ResponseEntity.created(location).build();
-
     }
 
 
     //Edição
     @PutMapping("/{id}")
     public ResponseEntity update(@PathVariable("id") long id, @RequestBody EnderecoModel enderecoModel) throws  ResponseBusinessException{
-
         enderecoBusiness.findById(id);
-
         enderecoModel.setIdEndereco(id);
         enderecoBusiness.save(enderecoModel);
         return ResponseEntity.ok().build();
-
     }
 
     //Deleção
     @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable("id") long id){
         enderecoBusiness.deleteById(id);
-
         return ResponseEntity.noContent().build();
     }
 }

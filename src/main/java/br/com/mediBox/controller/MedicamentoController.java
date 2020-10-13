@@ -1,6 +1,8 @@
 package br.com.mediBox.controller;
 
+import br.com.mediBox.business.GavetaBusiness;
 import br.com.mediBox.business.MedicamentoBusiness;
+import br.com.mediBox.dto.MedicamentoDto;
 import br.com.mediBox.exception.ResponseBusinessException;
 
 import br.com.mediBox.model.MedicamentoModel;
@@ -19,6 +21,9 @@ public class MedicamentoController {
 
     @Autowired
     public MedicamentoBusiness medicamentoBusiness;
+
+    @Autowired
+    public GavetaBusiness gavetaBusiness;
 
     //Busca
     @GetMapping
@@ -41,7 +46,8 @@ public class MedicamentoController {
 
     //Cadastro
     @PostMapping
-    public ResponseEntity save(@RequestBody MedicamentoModel medicamentoModel) throws ResponseBusinessException {
+    public ResponseEntity save(@RequestBody MedicamentoDto medicamentoDto) throws ResponseBusinessException {
+        MedicamentoModel medicamentoModel = converterDtoToModel(medicamentoDto);
         medicamentoBusiness.save(medicamentoModel);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -54,8 +60,8 @@ public class MedicamentoController {
 
     //Edição
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable("id") long id, @RequestBody MedicamentoModel medicamentoModel) throws  ResponseBusinessException{
-
+    public ResponseEntity update(@PathVariable("id") long id, @RequestBody MedicamentoDto medicamentoDto) throws  ResponseBusinessException{
+        MedicamentoModel medicamentoModel = converterDtoToModel(medicamentoDto);
         medicamentoBusiness.findById(id);
 
         medicamentoModel.setIdMedicamento(id);
@@ -71,4 +77,16 @@ public class MedicamentoController {
 
         return ResponseEntity.noContent().build();
     }
+
+    private MedicamentoModel converterDtoToModel(MedicamentoDto dto){
+        MedicamentoModel medicamentoModel = new MedicamentoModel();
+        medicamentoModel.setDescricao(dto.getDescricao());
+        medicamentoModel.setDosagem(dto.getDosagem());
+        medicamentoModel.setGavetaModel(gavetaBusiness.findById(dto.getGavetaModel()));
+        medicamentoModel.setIdMedicamento(dto.getIdMedicamento());
+        medicamentoModel.setLaboratorio(dto.getLaboratorio());
+        medicamentoModel.setNomeMedicamento(dto.getNomeMedicamento());
+        return medicamentoModel;
+    }
+
 }

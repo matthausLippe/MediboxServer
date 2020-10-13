@@ -44,7 +44,6 @@ public class ResidenteController {
 
     }
 
-
     //Cadastro
     @PostMapping
     public ResponseEntity save(@RequestBody ResidenteDto residenteDto) throws ResponseBusinessException, ParseException {
@@ -58,7 +57,6 @@ public class ResidenteController {
         return ResponseEntity.created(location).build();
 
     }
-
 
     //Edição
     @PutMapping("/{id}")
