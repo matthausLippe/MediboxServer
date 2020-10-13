@@ -16,6 +16,14 @@ public class TimeLineBusiness {
         return timeLineRepository.findAll();
     }
 
+    public List<TimeLineModel> findByIdResidenteMedicamento(long id){
+        return timeLineRepository.findByIdResidenteMedicamento(id);
+    }
+
+    public List<TimeLineModel> findByIdCliente(long id){
+        return timeLineRepository.findByIdCliente(id);
+    }
+
     public TimeLineModel findById(long id) {
         return timeLineRepository.findById(id).get();
     }

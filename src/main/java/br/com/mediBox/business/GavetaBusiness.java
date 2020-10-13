@@ -17,6 +17,8 @@ public class GavetaBusiness {
         return gavetaRepository.findAll();
     }
 
+    public List<GavetaModel> findByIdCaixa(long id){return gavetaRepository.findByIdCaixa(id);}
+
     public GavetaModel findById(long id) {
         return gavetaRepository.findById(id).get();
     }

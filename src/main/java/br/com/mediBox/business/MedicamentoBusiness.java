@@ -17,6 +17,8 @@ public class MedicamentoBusiness {
         return medicamentoRepository.findAll();
     }
 
+    public List<MedicamentoModel> findByIdGaveta(long id){return medicamentoRepository.findByIdGaveta(id);}
+
     public MedicamentoModel findById(long id) {
         return medicamentoRepository.findById(id).get();
     }

@@ -22,6 +22,11 @@ public class CaixaBusiness {
         return caixaRepository.findById(id).get();
     }
 
+    public List<CaixaModel> findByIdCliente(long id){
+        return caixaRepository.findByIdCliente(id);
+
+    }
+
     public void save(CaixaModel caixaModel) {
         caixaRepository.save(caixaModel);
     }

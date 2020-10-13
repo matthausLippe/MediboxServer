@@ -17,6 +17,8 @@ public class ResidenteBusiness {
         return residenteRepository.findAll();
     }
 
+    public List<ResidenteModel> findByIdCliente(long id){return residenteRepository.findByIdCliente(id);}
+
     public ResidenteModel findById(long id) {
         return residenteRepository.findById(id).get();
     }

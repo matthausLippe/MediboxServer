@@ -1,11 +1,9 @@
 package br.com.mediBox.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table (name = "TB_TIMELINE")
@@ -18,29 +16,26 @@ public class TimeLineModel {
     private long idTimeLine;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idResidenteMedicamento")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("residenteMedicamentoModel")
     @JoinColumn (name="idResidenteMedicamento", nullable = false)
     private ResidenteMedicamentoModel residenteMedicamentoModel;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCliente")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("clienteModel")
     @JoinColumn (name="idCliente", nullable = false)
     private ClienteModel clienteModel;
 
-    //@Column(name = "dataMedicacao")
-    //@JsonFormat(pattern="dd/MM/yyyy")
-    //private Date dataMedicacao;
-
-    //@Column(name = "horaMedicacao")
-    //private Time horaMedicacao;
-
-    @JsonFormat(pattern="yyyy-MM-dd@HH:mm:ss.SSSZ")
+    @JsonFormat(pattern="yyyy-MM-dd@HH:mm", timezone = "UTC")
     @Column(name = "dataHoraMedicacao")
-    private Timestamp dataHoraMedicacao;
+    private Date dataHoraMedicacao;
 
     @Column(name = "status")
     private int status ;
 
-    public static int MEDICADO = 1;
-    public static int NAO_MEDICADO = 0;
 
     public TimeLineModel() {
        
@@ -70,29 +65,13 @@ public class TimeLineModel {
         this.clienteModel = clienteModel;
     }
 
-    public Timestamp getDataHoraMedicacao() {
+    public Date getDataHoraMedicacao() {
         return dataHoraMedicacao;
     }
 
-    public void setDataHoraMedicacao(Timestamp dataHoraMedicacao) {
+    public void setDataHoraMedicacao(Date dataHoraMedicacao) {
         this.dataHoraMedicacao = dataHoraMedicacao;
     }
-
-    /*public Date getDataMedicacao() {
-        return dataMedicacao;
-    }
-
-    public void setDataMedicacao(Date dataMedicacao) {
-        this.dataMedicacao = dataMedicacao;
-    }
-
-    public Time getHoraMedicacao() {
-        return horaMedicacao;
-    }
-
-    public void setHoraMedicacao(Time horaMedicacao) {
-        this.horaMedicacao = horaMedicacao;
-    }*/
 
     public int getStatus() {
         return status;

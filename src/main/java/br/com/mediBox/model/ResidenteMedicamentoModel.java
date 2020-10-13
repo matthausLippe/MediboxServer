@@ -1,11 +1,11 @@
 package br.com.mediBox.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import static java.util.Locale.*;
 
 @Entity
 @Table(name = "TB_RESIDENTEMEDICAMENTO")
@@ -18,20 +18,25 @@ public class ResidenteMedicamentoModel {
     private long idResidenteMedicamento;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idResidente")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("residenteModel")
     @JoinColumn (name="idResidente", nullable = false)
     private ResidenteModel residenteModel;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idMedicamento")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("medicamentoModel")
     @JoinColumn (name="idMedicamento", nullable = false)
     private MedicamentoModel medicamentoModel;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCliente")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("clienteModel")
     @JoinColumn (name="idCliente", nullable = false)
     private ClienteModel clienteModel;
-
-    @ManyToOne
-    @JoinColumn (name="idGaveta", nullable = false)
-    private GavetaModel gavetaModel;
 
     @Column(name = "dosagem")
     private String dosagem;
@@ -39,21 +44,15 @@ public class ResidenteMedicamentoModel {
     @Column(name = "intervalo")
     private double intervalo;
 
-    /*@Column(name = "dataInicio")
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private Date dataInicio;
-
-    @Column(name = "horaInicio")
-    private Time horaInicio;*/
-
-    @JsonFormat(pattern="yyyy-MM-dd@HH:mm:ss.SSSZ")
+    @JsonFormat(pattern = "yyyy-MM-dd@HH:mm", timezone = "UTC")
     @Column(name = "dataHoraInicio")
-    private Timestamp dataHoraInicio;
+    public Date dataHoraInicio;
 
     @Column(name = "doses")
     private int doses;
 
     @OneToMany (mappedBy = "residenteMedicamentoModel")
+    @JsonIgnore
     private List<TimeLineModel> listTimeLine = new ArrayList<TimeLineModel>();
 
 
@@ -94,14 +93,6 @@ public class ResidenteMedicamentoModel {
         this.clienteModel = clienteModel;
     }
 
-    public GavetaModel getGavetaModel() {
-        return gavetaModel;
-    }
-
-    public void setGavetaModel(GavetaModel gavetaModel) {
-        this.gavetaModel = gavetaModel;
-    }
-
     public String getDosagem() {
         return dosagem;
     }
@@ -118,29 +109,13 @@ public class ResidenteMedicamentoModel {
         this.intervalo = intervalo;
     }
 
-    public Timestamp getDataHoraInicio() {
+    public Date getDataHoraInicio() {
         return dataHoraInicio;
     }
 
-    public void setDataHoraInicio(Timestamp dataHoraInicio) {
+    public void setDataHoraInicio(Date dataHoraInicio) {
         this.dataHoraInicio = dataHoraInicio;
     }
-
-    /*public Date getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public Time getHoraInicio() {
-        return horaInicio;
-    }
-
-    public void setHoraInicio(Time horaInicio) {
-        this.horaInicio = horaInicio;
-    }*/
 
     public int getDoses() {
         return doses;

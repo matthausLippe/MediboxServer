@@ -18,6 +18,18 @@ public class ResidenteMedicamentoBusiness {
         return residenteMedicamentoRepository.findAll();
     }
 
+    public List<ResidenteMedicamentoModel> findByIdCliente(long id){
+        return residenteMedicamentoRepository.findByIdCliente(id);
+    }
+
+    public List<ResidenteMedicamentoModel> findByIdMedicamento(long id){
+        return residenteMedicamentoRepository.findByIdMedicamento(id);
+    }
+
+    public List<ResidenteMedicamentoModel> findByIdResidente(long id){
+        return residenteMedicamentoRepository.findByIdResidente(id);
+    }
+
     public ResidenteMedicamentoModel findById(long id) {
         return residenteMedicamentoRepository.findById(id).get();
     }
@@ -30,7 +42,5 @@ public class ResidenteMedicamentoBusiness {
         residenteMedicamentoRepository.deleteById(id);
     }
 
-    public List<ResidenteMedicamentoModel> findByIdResidente(long id){
-        return residenteMedicamentoRepository.findByIdResidente(id);
-    }
+
 }

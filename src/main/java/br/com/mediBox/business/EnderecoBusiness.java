@@ -17,6 +17,8 @@ public class EnderecoBusiness {
         return enderecoRepository.findAll();
     }
 
+    public List<EnderecoModel> findByIdCliente(long id){return enderecoRepository.findByIdCliente(id);}
+
     public EnderecoModel findById(long id) {
         return enderecoRepository.findById(id).get();
     }

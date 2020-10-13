@@ -1,5 +1,10 @@
 package br.com.mediBox.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +19,9 @@ public class GavetaModel {
 	private long idGaveta;
 
 	@ManyToOne
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCaixa")
+	@JsonIdentityReference(alwaysAsId = true)
+	@JsonProperty("caixaModel")
 	@JoinColumn (name="idCaixa", nullable = false)
 	private CaixaModel caixaModel;
 
@@ -25,9 +33,6 @@ public class GavetaModel {
 
 	@OneToMany(mappedBy = "gavetaModel")
 	private List<MedicamentoModel> listMedicamentoModel = new ArrayList<MedicamentoModel>();
-
-	@OneToMany (mappedBy = "gavetaModel")
-	private List<ResidenteMedicamentoModel> listResidenteMedicamentoModel = new ArrayList<ResidenteMedicamentoModel>();
 
 	public GavetaModel() {
 

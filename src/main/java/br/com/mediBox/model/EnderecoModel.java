@@ -1,5 +1,10 @@
 package br.com.mediBox.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +18,9 @@ public class EnderecoModel {
     private long idEndereco;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCliente")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("clienteModel")
     @JoinColumn (name="idCliente", nullable = false)
     private ClienteModel clienteModel;
 

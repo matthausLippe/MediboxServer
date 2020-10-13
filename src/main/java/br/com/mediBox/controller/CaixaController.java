@@ -1,6 +1,8 @@
 package br.com.mediBox.controller;
 
 import br.com.mediBox.business.CaixaBusiness;
+import br.com.mediBox.business.ClienteBusiness;
+import br.com.mediBox.dto.CaixaDto;
 import br.com.mediBox.exception.ResponseBusinessException;
 import br.com.mediBox.model.CaixaModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +21,21 @@ public class CaixaController {
     @Autowired
     public CaixaBusiness caixaBusiness;
 
+    @Autowired
+    public ClienteBusiness clienteBusiness;
+
     //Busca
     @GetMapping
-    public ResponseEntity<List<CaixaModel>> findAll(){
+    public ResponseEntity<List<CaixaModel>> findAll() {
 
         List<CaixaModel> listCaixa = caixaBusiness.findAll();
-     return ResponseEntity.ok(listCaixa);
-
+        return ResponseEntity.ok(listCaixa);
 
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CaixaModel> findById(@PathVariable("id") long id){
+    public ResponseEntity<CaixaModel> findById(@PathVariable("id") long id) {
         CaixaModel caixaModel = caixaBusiness.findById(id);
         return ResponseEntity.ok(caixaModel);
 
@@ -40,8 +44,10 @@ public class CaixaController {
 
     //Cadastro
     @PostMapping
-    public ResponseEntity save(@RequestBody CaixaModel caixaModel) throws ResponseBusinessException{
-       caixaBusiness.save(caixaModel);
+    public ResponseEntity save(@RequestBody CaixaDto caixaDto) throws ResponseBusinessException {
+        CaixaModel caixaModel = converterDtoToModel(caixaDto);
+
+        caixaBusiness.save(caixaModel);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(caixaModel.getIdCaixa()).toUri();
@@ -50,25 +56,32 @@ public class CaixaController {
 
     }
 
-
     //Edição
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable("id") long id, @RequestBody CaixaModel caixaModel) throws  ResponseBusinessException{
-
+    public ResponseEntity update(@PathVariable("id") long id, @RequestBody CaixaDto caixaDto) throws ResponseBusinessException {
         caixaBusiness.findById(id);
-
+        CaixaModel caixaModel = converterDtoToModel(caixaDto);
         caixaModel.setIdCaixa(id);
         caixaBusiness.save(caixaModel);
-        return ResponseEntity.ok().build();
-
+        return ResponseEntity.noContent().build();
     }
 
     //Deleção
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable("id") long id){
+    public ResponseEntity deleteById(@PathVariable("id") long id) {
         caixaBusiness.deleteById(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    private CaixaModel converterDtoToModel(CaixaDto caixaDto) {
+        CaixaModel caixaModel = new CaixaModel();
+        caixaModel.setIdCaixa(caixaDto.getIdCaixa());
+        caixaModel.setClienteModel(clienteBusiness.findById(caixaDto.getClienteModel()));
+        caixaModel.setMac(caixaDto.getMac());
+        caixaModel.setStatus(caixaDto.getStatus());
+
+        return caixaModel;
     }
 
 }
