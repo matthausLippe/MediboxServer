@@ -66,7 +66,7 @@ public class MedicamentoController {
 
         medicamentoModel.setIdMedicamento(id);
         medicamentoBusiness.save(medicamentoModel);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
 
     }
 

@@ -54,7 +54,7 @@ public class GavetaController {
         gavetaBusiness.findById(id);
         gavetaModel.setIdGaveta(id);
         gavetaBusiness.save(gavetaModel);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     //Deleção

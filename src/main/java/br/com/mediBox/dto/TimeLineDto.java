@@ -1,56 +1,95 @@
 package br.com.mediBox.dto;
 
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "idTimeLine",
+        "dataHoraMedicacao",
+        "status",
+        "residenteMedicamentoModel",
+        "clienteModel"
+})
 public class TimeLineDto {
-    private int idTimeLine;
 
-    private int residenteMedicamentoModel;
-
-    private int clienteModel;
-
+    @JsonProperty("idTimeLine")
+    private Integer idTimeLine;
+    @JsonProperty("dataHoraMedicacao")
     private String dataHoraMedicacao;
+    @JsonProperty("status")
+    private Integer status;
+    @JsonProperty("residenteMedicamentoModel")
+    private Integer residenteMedicamentoModel;
+    @JsonProperty("clienteModel")
+    private Integer clienteModel;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    private int status;
-
-    public TimeLineDto() {
-    }
-
-    public int getIdTimeLine() {
+    @JsonProperty("idTimeLine")
+    public Integer getIdTimeLine() {
         return idTimeLine;
     }
 
-    public void setIdTimeLine(int idTimeLine) {
+    @JsonProperty("idTimeLine")
+    public void setIdTimeLine(Integer idTimeLine) {
         this.idTimeLine = idTimeLine;
     }
 
-    public int getResidenteMedicamentoModel() {
-        return residenteMedicamentoModel;
-    }
-
-    public void setResidenteMedicamentoModel(int residenteMedicamentoModel) {
-        this.residenteMedicamentoModel = residenteMedicamentoModel;
-    }
-
-    public int getClienteModel() {
-        return clienteModel;
-    }
-
-    public void setClienteModel(int clienteModel) {
-        this.clienteModel = clienteModel;
-    }
-
+    @JsonProperty("dataHoraMedicacao")
     public String getDataHoraMedicacao() {
         return dataHoraMedicacao;
     }
 
+    @JsonProperty("dataHoraMedicacao")
     public void setDataHoraMedicacao(String dataHoraMedicacao) {
         this.dataHoraMedicacao = dataHoraMedicacao;
     }
 
-    public int getStatus() {
+    @JsonProperty("status")
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    @JsonProperty("status")
+    public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @JsonProperty("residenteMedicamentoModel")
+    public Integer getResidenteMedicamentoModel() {
+        return residenteMedicamentoModel;
+    }
+
+    @JsonProperty("residenteMedicamentoModel")
+    public void setResidenteMedicamentoModel(Integer residenteMedicamentoModel) {
+        this.residenteMedicamentoModel = residenteMedicamentoModel;
+    }
+
+    @JsonProperty("clienteModel")
+    public Integer getClienteModel() {
+        return clienteModel;
+    }
+
+    @JsonProperty("clienteModel")
+    public void setClienteModel(Integer clienteModel) {
+        this.clienteModel = clienteModel;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
+
 }

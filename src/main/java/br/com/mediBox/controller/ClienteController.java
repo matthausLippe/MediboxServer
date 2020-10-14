@@ -59,7 +59,7 @@ public class ClienteController {
 
         clienteModel.setIdCliente(id);
         clienteBusiness.save(clienteModel);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
 
     }
 

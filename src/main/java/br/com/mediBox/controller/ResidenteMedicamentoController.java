@@ -72,7 +72,7 @@ public class ResidenteMedicamentoController {
         residenteMedicamentoBusiness.findById(id);
         residenteMedicamentoModel.setIdResidenteMedicamento(id);
         residenteMedicamentoBusiness.save(residenteMedicamentoModel);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     //Deleção

@@ -62,7 +62,7 @@ public class TimeLineController {
         timeLineBusiness.findById(id);
         timeLineModel.setIdTimeLine(id);
         timeLineBusiness.save(timeLineModel);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     //Deleção

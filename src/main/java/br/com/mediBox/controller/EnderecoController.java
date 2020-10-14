@@ -49,7 +49,7 @@ public class EnderecoController {
         enderecoBusiness.findById(id);
         enderecoModel.setIdEndereco(id);
         enderecoBusiness.save(enderecoModel);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     //Deleção
